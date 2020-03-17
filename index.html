@@ -145,7 +145,7 @@
 <div class="card">
     
     <div class="card-image">
-        <a href="/2020/02/18/flutter-debug-1/" class="image is-7by1">
+        <a href="/2020/03/17/flutter-debug-1/" class="image is-7by1">
             <img class="thumbnail" src="/images/parthenon-greece-landmark.jpg" alt="flutter_debug_1">
         </a>
     </div>
@@ -154,13 +154,13 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2020-02-18T15:22:32.000Z">2020-02-18</time>
+                <time class="level-item has-text-grey" datetime="2020-03-16T16:00:00.000Z">2020-03-17</time>
                 
                 
                 <span class="level-item has-text-grey">
                     
                     
-                    9 分钟 读完 (大约 1345 个字)
+                    9 分钟 读完 (大约 1341 个字)
                 </span>
                 
                 
@@ -169,7 +169,7 @@
         
         <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
             
-                <a class="has-link-black-ter" href="/2020/02/18/flutter-debug-1/">flutter_debug_1</a>
+                <a class="has-link-black-ter" href="/2020/03/17/flutter-debug-1/">flutter_debug_1</a>
             
         </h1>
         <div class="content">
@@ -204,11 +204,11 @@ mirrors.opencas.cn (mirrors.opencas.org/mirrors.opencas.ac.cn)  端口：80
 sdk.gdgshanghai.com   端口：8000
 
 5)电子科技大学(用不了，不知道是倒闭了还是怎么的)
-mirrors.dormforce.net  端口：80</code></pre><p>3) 配置<code>ss</code>代理：<br>   如图 <img src="../../themes/icarus/source/images/Flutter/AS_Httpproxy_setting.png" alt="avatar"><br>   其中<code>Port number</code>即为ss的端口号<br>   但是这样只能下载sdk,这样配置之后有没有发现我们使用Gradle下载某些依赖的时候还是下载不下来，不对啊，我们吧㐊配置代理，那是应为gradle不支持socks代理，这里我们可以将socks转为http代理，或者给jvm设置代理</p>
+mirrors.dormforce.net  端口：80</code></pre><p>3) 配置<code>ss</code>代理：<br>   如图 <img src="/2020/03/17/flutter-debug-1/_posts/flutter-debug-1/AS_Httpproxy_setting.png" alt="http proxy"><br>   其中<code>Port number</code>即为ss的端口号<br>   但是这样只能下载sdk,这样配置之后有没有发现我们使用Gradle下载某些依赖的时候还是下载不下来，不对啊，我们吧㐊配置代理，那是应为gradle不支持socks代理，这里我们可以将socks转为http代理，或者给jvm设置代理</p>
 <p>   <code>org.gradle.jvmargs=-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080</code></p>
-<p>   在AS中我们可以直接给JVM设置代理。在我们的跟目录的 gradle.properties 加上以下配置就可以下载了。<img src="../../themes/icarus/source/images/Flutter/%5CAS_socks.jpg" alt="avatar"></p>
+<p>   在AS中我们可以直接给JVM设置代理。在我们的跟目录的 gradle.properties 加上以下配置就可以下载了。<img src="/2020/03/17/flutter-debug-1/_posts/flutter-debug-1/AS_socks.jpg" alt></p>
 <ol start="4">
-<li><p>去<a href="https://plugins.jetbrains.com/androidstudio">JetBrains Plugin Repository</a>网上下载离线插件，然后进行本地安装。<br> 注意下载Plug的build版本对应AS<img src=".../../../../themes/icarus/source/images/Flutter/Plugin_download.png" alt="avatar"></p>
+<li><p>去<a href="https://plugins.jetbrains.com/androidstudio">JetBrains Plugin Repository</a>网上下载离线插件，然后进行本地安装。<br> 注意下载Plug的build版本对应AS <img src="/2020/03/17/flutter-debug-1/_posts/flutter-debug-1/Plugin_download.png" alt></p>
 <hr>
 </li>
 </ol>
@@ -628,7 +628,7 @@ mirrors.dormforce.net  端口：80</code></pre><p>3) 配置<code>ss</code>代理
                     </p>
                     <a href="/tags">
                         <p class="title has-text-weight-normal">
-                            2
+                            3
                         </p>
                     </a>
                 </div>
@@ -701,7 +701,7 @@ mirrors.dormforce.net  端口：80</code></pre><p>3) 配置<code>ss</code>代理
         
         <article class="media">
             
-            <a href="/2020/02/18/flutter-debug-1/" class="media-left">
+            <a href="/2020/03/17/flutter-debug-1/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/parthenon-greece-landmark.jpg" alt="flutter_debug_1">
                 </p>
@@ -709,8 +709,8 @@ mirrors.dormforce.net  端口：80</code></pre><p>3) 配置<code>ss</code>代理
             
             <div class="media-content">
                 <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-02-18T15:22:32.000Z">2020-02-18</time></div>
-                    <a href="/2020/02/18/flutter-debug-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">flutter_debug_1</a>
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2020-03-16T16:00:00.000Z">2020-03-17</time></div>
+                    <a href="/2020/03/17/flutter-debug-1/" class="title has-link-black-ter is-size-6 has-text-weight-normal">flutter_debug_1</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -826,12 +826,23 @@ mirrors.dormforce.net  端口：80</code></pre><p>3) 配置<code>ss</code>代理
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/02/">
                 <span class="level-start">
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -850,9 +861,16 @@ mirrors.dormforce.net  端口：80</code></pre><p>3) 配置<code>ss</code>代理
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/flutter/">
+                        <span class="tag">flutter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/flutter-%E5%AD%A6%E4%B9%A0/">
                         <span class="tag">flutter 学习</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -873,7 +891,7 @@ mirrors.dormforce.net  端口：80</code></pre><p>3) 配置<code>ss</code>代理
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/flutter-%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">flutter 学习</a> <a href="/tags/modle/" style="font-size: 10px;">modle</a>
+        <a href="/tags/flutter/" style="font-size: 10px;">flutter</a> <a href="/tags/flutter-%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">flutter 学习</a> <a href="/tags/modle/" style="font-size: 20px;">modle</a>
     </div>
 </div>
         
@@ -897,12 +915,23 @@ mirrors.dormforce.net  端口：80</code></pre><p>3) 配置<code>ss</code>代理
         <ul class="menu-list">
         
         <li>
+            <a class="level is-marginless" href="/archives/2020/03/">
+                <span class="level-start">
+                    <span class="level-item">三月 2020</span>
+                </span>
+                <span class="level-end">
+                    <span class="level-item tag">1</span>
+                </span>
+            </a>
+        </li>
+        
+        <li>
             <a class="level is-marginless" href="/archives/2020/02/">
                 <span class="level-start">
                     <span class="level-item">二月 2020</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">4</span>
+                    <span class="level-item tag">3</span>
                 </span>
             </a>
         </li>
@@ -921,9 +950,16 @@ mirrors.dormforce.net  端口：80</code></pre><p>3) 配置<code>ss</code>代理
             <div class="field is-grouped is-grouped-multiline">
                 
                 <div class="control">
+                    <a class="tags has-addons" href="/tags/flutter/">
+                        <span class="tag">flutter</span>
+                        <span class="tag is-grey">1</span>
+                    </a>
+                </div>
+                
+                <div class="control">
                     <a class="tags has-addons" href="/tags/flutter-%E5%AD%A6%E4%B9%A0/">
                         <span class="tag">flutter 学习</span>
-                        <span class="tag is-grey">2</span>
+                        <span class="tag is-grey">1</span>
                     </a>
                 </div>
                 
@@ -944,7 +980,7 @@ mirrors.dormforce.net  端口：80</code></pre><p>3) 配置<code>ss</code>代理
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/flutter-%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">flutter 学习</a> <a href="/tags/modle/" style="font-size: 10px;">modle</a>
+        <a href="/tags/flutter/" style="font-size: 10px;">flutter</a> <a href="/tags/flutter-%E5%AD%A6%E4%B9%A0/" style="font-size: 10px;">flutter 学习</a> <a href="/tags/modle/" style="font-size: 20px;">modle</a>
     </div>
 </div>
     
