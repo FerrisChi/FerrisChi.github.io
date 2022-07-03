@@ -24,20 +24,20 @@
     var CONFIG = {"hostname":"ferrischi.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="a simple site">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="http://ferrischi.github.io/categories/index.html">
+  <meta name="description" content="@Override是伪代码,表示重写。(当然不写@Override也可以)，不过写上有如下好处:1、可以当注释用,方便阅读；2、编译器可以给你验证@Override下面的方法名是否是你父类中所有的，如果没有则报错。例如，你如果没写@Override，而你下面的方法名又写错了，这时你的编译器是可以编译通过的，因为编译器以为这个方法是你的子类中自己增加的方法。 举例：在重写父类的onCreate时，在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="override 的用法">
+<meta property="og:url" content="http://ferrischi.github.io/2020/02/18/usage-of-override/index.html">
 <meta property="og:site_name" content="FerrisChi&#39;s Blog">
-<meta property="og:description" content="a simple site">
+<meta property="og:description" content="@Override是伪代码,表示重写。(当然不写@Override也可以)，不过写上有如下好处:1、可以当注释用,方便阅读；2、编译器可以给你验证@Override下面的方法名是否是你父类中所有的，如果没有则报错。例如，你如果没写@Override，而你下面的方法名又写错了，这时你的编译器是可以编译通过的，因为编译器以为这个方法是你的子类中自己增加的方法。 举例：在重写父类的onCreate时，在">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-07-03T08:17:40.000Z">
-<meta property="article:modified_time" content="2022-07-03T08:18:53.012Z">
+<meta property="article:published_time" content="2020-02-18T15:09:42.000Z">
+<meta property="article:modified_time" content="2022-07-03T12:10:05.060Z">
 <meta property="article:author" content="Ferris Chi">
-<meta property="article:tag" content="123">
+<meta property="article:tag" content="flutter 学习">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://ferrischi.github.io/categories/">
+<link rel="canonical" href="http://ferrischi.github.io/2020/02/18/usage-of-override/">
 
 
 <script id="page-configurations">
@@ -45,13 +45,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类 | FerrisChi's Blog
-</title>
+  <title>override 的用法 | FerrisChi's Blog</title>
   
 
 
@@ -197,51 +196,152 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">分类
-</h1>
-
-<div class="post-meta">
   
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ferrischi.github.io/2020/02/18/usage-of-override/">
 
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.png">
+      <meta itemprop="name" content="Ferris Chi">
+      <meta itemprop="description" content="a simple site">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FerrisChi's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          override 的用法
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-18 23:09:42" itemprop="dateCreated datePublished" datetime="2020-02-18T23:09:42+08:00">2020-02-18</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-03 20:10:05" itemprop="dateModified" datetime="2022-07-03T20:10:05+08:00">2022-07-03</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>595</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="Override是伪代码-表示重写。-当然不写-Override也可以-，不过写上有如下好处"><a href="#Override是伪代码-表示重写。-当然不写-Override也可以-，不过写上有如下好处" class="headerlink" title="@Override是伪代码,表示重写。(当然不写@Override也可以)，不过写上有如下好处:"></a>@Override是伪代码,表示重写。(当然不写@Override也可以)，不过写上有如下好处:</h2><p>1、可以当注释用,方便阅读；<br>2、编译器可以给你验证@Override下面的方法名是否是你父类中所有的，如果没有则报错。例如，你如果没写@Override，而你下面的方法名又写错了，这时你的编译器是可以编译通过的，因为编译器以为这个方法是你的子类中自己增加的方法。</p>
+<p>举例：在重写父类的onCreate时，在方法前面加上@Override 系统可以帮你检查方法的正确性。</p>
+<span id="more"></span>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void onCreate(Bundle savedInstanceState)</span><br><span class="line">&#123;…….&#125;</span><br></pre></td></tr></table></figure>
+<p>这种写法是正确的，如果你不小心写成：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public void oncreate(Bundle savedInstanceState)</span><br><span class="line">&#123;…….&#125;</span><br></pre></td></tr></table></figure>
+<p>编译器会报如下错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The method oncreate(Bundle) of type HelloWorld must override or implement a supertype method</span><br></pre></td></tr></table></figure>
+<p>以确保你正确重写onCreate方法（因为oncreate应该为onCreate）。</p>
+<p>而如果不加@Override，则编译器将不会检测出错误，而是会认为你为子类定义了一个新方法：oncreate</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Ferris Chi
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://ferrischi.github.io/2020/02/18/usage-of-override/" title="override 的用法">http://ferrischi.github.io/2020/02/18/usage-of-override/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
 </div>
 
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="category-all-page">
-            <div class="category-all-title">
-              暂无分类
-            </div>
-            <div class="category-all">
-              
-            </div>
-          </div>
         
-      </div>
-      
-      
-      
-    </div>
-    
 
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/flutter-%E5%AD%A6%E4%B9%A0/" rel="tag"><i class="fa fa-tag"></i> flutter 学习</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/16/Markdown_handbook/" rel="prev" title="Markdown_handbook">
+      <i class="fa fa-chevron-left"></i> Markdown_handbook
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/02/20/flutter-debug-1/" rel="next" title="flutter_debug_1">
+      flutter_debug_1 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
     
-    
-    
+  </article>
+  
+  
+  
+
 
 
           </div>
@@ -292,6 +392,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Override%E6%98%AF%E4%BC%AA%E4%BB%A3%E7%A0%81-%E8%A1%A8%E7%A4%BA%E9%87%8D%E5%86%99%E3%80%82-%E5%BD%93%E7%84%B6%E4%B8%8D%E5%86%99-Override%E4%B9%9F%E5%8F%AF%E4%BB%A5-%EF%BC%8C%E4%B8%8D%E8%BF%87%E5%86%99%E4%B8%8A%E6%9C%89%E5%A6%82%E4%B8%8B%E5%A5%BD%E5%A4%84"><span class="nav-number">1.</span> <span class="nav-text">@Override是伪代码,表示重写。(当然不写@Override也可以)，不过写上有如下好处:</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

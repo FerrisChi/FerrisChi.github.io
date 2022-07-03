@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/icons8-clipart-180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icons8-clipart-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icons8-clipart-16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="manifest" href="/images/manifest.json">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ferrischi.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="flutter 卡在Running ‘gradle assembleDebug或者Falied原因是：大多是卡墙吧 解决办法：1、全程开启VPN或者在国外开发2、修改android目录下的build.gradle文件,用阿里云的代理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="flutter_debug_1">
+<meta property="og:url" content="http://ferrischi.github.io/2020/02/20/flutter-debug-1/index.html">
+<meta property="og:site_name" content="FerrisChi&#39;s Blog">
+<meta property="og:description" content="flutter 卡在Running ‘gradle assembleDebug或者Falied原因是：大多是卡墙吧 解决办法：1、全程开启VPN或者在国外开发2、修改android目录下的build.gradle文件,用阿里云的代理">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2020/03/17/d4oj7tsZlYGcV3q.png">
+<meta property="og:image" content="https://i.loli.net/2020/03/17/vJjmqc2KtRdna4U.jpg">
+<meta property="og:image" content="https://i.loli.net/2020/03/17/o9WberuUP6Yq3kM.png">
+<meta property="article:published_time" content="2020-02-20T14:00:42.000Z">
+<meta property="article:modified_time" content="2022-07-03T12:13:27.731Z">
+<meta property="article:author" content="Ferris Chi">
+<meta property="article:tag" content="flutter">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/03/17/d4oj7tsZlYGcV3q.png">
+
+<link rel="canonical" href="http://ferrischi.github.io/2020/02/20/flutter-debug-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>flutter_debug_1 | FerrisChi's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/rss2.xml" title="FerrisChi's Blog" type="application/rss+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">FerrisChi's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://ferrischi.github.io/2020/02/20/flutter-debug-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/myavatar.png">
+      <meta itemprop="name" content="Ferris Chi">
+      <meta itemprop="description" content="a simple site">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="FerrisChi's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          flutter_debug_1
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-20 22:00:42" itemprop="dateCreated datePublished" datetime="2020-02-20T22:00:42+08:00">2020-02-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-07-03 20:13:27" itemprop="dateModified" datetime="2022-07-03T20:13:27+08:00">2022-07-03</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.8k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <!-- ![testestest](https://i.loli.net/2020/03/17/4zOVunPlgcmRUNf.jpg) -->
+
+<h2 id="flutter-卡在Running-‘gradle-assembleDebug或者Falied"><a href="#flutter-卡在Running-‘gradle-assembleDebug或者Falied" class="headerlink" title="flutter 卡在Running ‘gradle assembleDebug或者Falied"></a>flutter 卡在Running ‘gradle assembleDebug或者Falied</h2><p>原因是：大多是卡墙吧</p>
+<p>解决办法：<br>1、全程开启VPN或者在国外开发<br>2、修改android目录下的build.gradle文件,用阿里云的代理</p>
+<span id="more"></span>
+<ol>
+<li><p><strong>修改本项目中<code>android/build.gradle</code>文件（仅本项目有效）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    ext.kotlin_version = &#x27;1.2.71&#x27;</span><br><span class="line">    repositories &#123;</span><br><span class="line">//        google()</span><br><span class="line">//        jcenter()</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/google&#x27; &#125;</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/jcenter&#x27; &#125;</span><br><span class="line">        maven &#123; url &#x27;http://maven.aliyun.com/nexus/content/groups/public&#x27; &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath &#x27;com.android.tools.build:gradle:3.2.1&#x27;</span><br><span class="line">        classpath &quot;org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version&quot;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">//        google()</span><br><span class="line">//        jcenter()</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/google&#x27; &#125;</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/jcenter&#x27; &#125;</span><br><span class="line">        maven &#123; url &#x27;http://maven.aliyun.com/nexus/content/groups/public&#x27; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">rootProject.buildDir = &#x27;../build&#x27;</span><br><span class="line">subprojects &#123;</span><br><span class="line">    project.buildDir = &quot;$&#123;rootProject.buildDir&#125;/$&#123;project.name&#125;&quot;</span><br><span class="line">&#125;</span><br><span class="line">subprojects &#123;</span><br><span class="line">    project.evaluationDependsOn(&#x27;:app&#x27;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task clean(type: Delete) &#123;</span><br><span class="line">    delete rootProject.buildDir</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>修改Flutter的配置文件, 该文件在<code>Flutter安装目录/packages/flutter_tools/gradle/flutter.gradle</code>（全局配置）</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        //修改的地方</span><br><span class="line">        //google()</span><br><span class="line">        //jcenter()</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/google&#x27; &#125;</span><br><span class="line">        maven &#123; url &#x27;https://maven.aliyun.com/repository/jcenter&#x27; &#125;</span><br><span class="line">        maven &#123; url &#x27;http://maven.aliyun.com/nexus/content/groups/public&#x27; &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath &#x27;com.android.tools.build:gradle:3.2.1&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="AndroidStudio-SSL-peer-shut-down-incorrectly-问题和plugin-Market插件下载失败问题"><a href="#AndroidStudio-SSL-peer-shut-down-incorrectly-问题和plugin-Market插件下载失败问题" class="headerlink" title="AndroidStudio SSL peer shut down incorrectly 问题和plugin Market插件下载失败问题"></a>AndroidStudio <code>SSL peer shut down incorrectly</code> 问题和<code>plugin Market</code>插件下载失败问题</h2><p>AndroidStudio 编译时出现 <code>SSL peer shut down incorrectly</code> 或者某些jar包下载不下来，多半是也是墙的原因导致的。</p>
+<p>解决方法：</p>
+<p>1.配置镜像来解决这个问题。（为了提高jar包的下载速度也可以配置）配置的方法就是在根<code>build.gradle</code>中添加镜像仓库，一般我们选择阿里的 <a target="_blank" rel="noopener" href="http://maven.aliyun.com/nexus/content/groups/public/">http://maven.aliyun.com/nexus/content/groups/public/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">buildscript &#123;</span><br><span class="line"></span><br><span class="line">    repositories &#123;</span><br><span class="line">        google()</span><br><span class="line">        maven &#123; url &#x27;http://maven.aliyun.com/nexus/content/groups/public/&#x27; &#125;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    dependencies &#123;</span><br><span class="line">        classpath &#x27;com.android.tools.build:gradle:3.2.1&#x27;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">allprojects &#123;</span><br><span class="line">    repositories &#123;</span><br><span class="line">        google()</span><br><span class="line">        maven &#123; url &#x27;http://maven.aliyun.com/nexus/content/groups/public/&#x27; &#125;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">task clean(type: Delete) &#123;</span><br><span class="line">    delete rootProject.buildDir</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.配置HTTP proxy</p>
+<ol>
+<li><p>网传<code>File-&gt;Settings-&gt;Apparence &amp; Behavior-&gt;System Settings-&gt;Updates-&gt;use secure connnection</code> 勾去掉即可</p>
+</li>
+<li><p>国内镜像:<code>Auto-detect proxy settings</code>中添加国内镜像端口<br>网传镜像源地址：</p>
+<p> 1)东软信息学院<br> mirrors.neusoft.edu.cn     端口：80</p>
+<p> 2）北京化工大学<br> ubuntu.buct.edu.cn&#x2F;ubuntu.buct.cn  端口：80</p>
+<p> 3)中国科学院开源协会<br> mirrors.opencas.cn (mirrors.opencas.org&#x2F;mirrors.opencas.ac.cn)  端口：80</p>
+<p> 4)上海GDG镜像服务器<br> sdk.gdgshanghai.com   端口：8000</p>
+<p> 5)电子科技大学(用不了，不知道是倒闭了还是怎么的)<br> mirrors.dormforce.net  端口：80</p>
+</li>
+<li><p>配置<code>ss</code>代理：<br>如图 <img src="https://i.loli.net/2020/03/17/d4oj7tsZlYGcV3q.png" alt="http proxy"><br>其中<code>Port number</code>即为ss的端口号<br>但是这样只能下载sdk,这样配置之后有没有发现我们使用Gradle下载某些依赖的时候还是下载不下来，不对啊，我们吧㐊配置代理，那是应为gradle不支持socks代理，这里我们可以将socks转为http代理，或者给jvm设置代理</p>
+<p><code>org.gradle.jvmargs=-DsocksProxyHost=127.0.0.1 -DsocksProxyPort=1080</code></p>
+<p>在AS中我们可以直接给JVM设置代理。在我们的跟目录的 gradle.properties 加上以下配置就可以下载了。<img src="https://i.loli.net/2020/03/17/vJjmqc2KtRdna4U.jpg" alt="JVM"></p>
+</li>
+</ol>
+<ol start="4">
+<li>去<a target="_blank" rel="noopener" href="https://plugins.jetbrains.com/androidstudio">JetBrains Plugin Repository</a>网上下载离线插件，然后进行本地安装。<br>  注意下载Plug的build版本对应AS <img src="https://i.loli.net/2020/03/17/o9WberuUP6Yq3kM.png" alt="JetBrains Plugin"></li>
+</ol>
+<hr>
+<h2 id="Your-app-isn’t-using-AndroidX错误"><a href="#Your-app-isn’t-using-AndroidX错误" class="headerlink" title="Your app isn’t using AndroidX错误"></a>Your app isn’t using AndroidX错误</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[!] Your app isn&#x27;t using AndroidX.</span><br><span class="line">    To avoid potential build failures, you can quickly migrate your app by following the steps on https://goo.gl/CP92wY.</span><br></pre></td></tr></table></figure>
+
+<p>这个提示是说项目并没有使用AndroidX</p>
+<ol>
+<li><p><strong>在<code>gradle.properties</code>中添加如下代码即可</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">android.enableJetifier=true</span><br><span class="line">android.useAndroidX=true</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>更新至最新的 distributionUrl</strong><br>文件路径：<code>android/gradle/wrapper/gradle-wrapper.properties</code><br>一般的话 以你默认创建的flutter工程 下的为准</p>
+</li>
+<li><p><strong>更新 Module 中 build.gradle SDK 版本</strong><br>文件路径：<code>android/app/build.gradle</code><br>一般改为28及其以上就OK了</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">android &#123;</span><br><span class="line">    //修改为28以上</span><br><span class="line">    compileSdkVersion 28</span><br><span class="line"></span><br><span class="line">    lintOptions &#123;</span><br><span class="line">        disable &#x27;InvalidPackage&#x27;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    defaultConfig &#123;</span><br><span class="line">        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).</span><br><span class="line">        applicationId &quot;com.example.flutterinstaclone&quot;</span><br><span class="line">        minSdkVersion 16</span><br><span class="line">        //修改为28以上</span><br><span class="line">        targetSdkVersion 28</span><br><span class="line">        versionCode 1</span><br><span class="line">        versionName &quot;1.0&quot;</span><br><span class="line">        testInstrumentationRunner &quot;android.support.test.runner.AndroidJUnitRunner&quot;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    buildTypes &#123;</span><br><span class="line">        release &#123;</span><br><span class="line">            // TODO: Add your own signing config for the release build.</span><br><span class="line">            // Signing with the debug keys for now, so `flutter run --release` works.</span><br><span class="line">            signingConfig signingConfigs.debug</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<hr>
+<h2 id="No-toolchains-found-in-the-NDK-toolchains-folder-for-ABI-with-prefix-mipsel-linux-android错误"><a href="#No-toolchains-found-in-the-NDK-toolchains-folder-for-ABI-with-prefix-mipsel-linux-android错误" class="headerlink" title="No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android错误"></a><strong>No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android错误</strong></h2><h3 id="相关背景"><a href="#相关背景" class="headerlink" title="相关背景"></a>相关背景</h3><p>NDK,是Native Development Kit的缩写，这是 Android的一个工具开发包，与java语言没有直接的关系<br>Native就是指C、C++这些语言<br>使用NDK可以快速开发C、C++的动态库，并自动将这些so文件与其他内容一起打包成APK</p>
+<h3 id="NDK目录：Android-Studio的SDK-tools中可见。"><a href="#NDK目录：Android-Studio的SDK-tools中可见。" class="headerlink" title="NDK目录：Android Studio的SDK tools中可见。"></a>NDK目录：Android Studio的SDK tools中可见。</h3><ol>
+<li><p>下载ndk中的<code>mipsel-linux-android</code>包<br>亲测无用,因为官方新版的ndk已经没有mipsel了,不死心的可以在这个地址下载(需要访问google)<br><a target="_blank" rel="noopener" href="https://developer.android.com/ndk/downloads/?hl=zh-cn">ndk下载地址</a><br><a target="_blank" rel="noopener" href="https://developer.android.com/ndk/downloads/older_releases.html?hl=zh-cn">旧版ndk下载地址16b(2017年12月)</a> 可以下到<br>解压<code>mipsel-linux-android</code>放入<code>toolchains</code>就可以了</p>
+</li>
+<li><p>google 不推荐使用 mipsel ，但是很多库还是检测它是否存在，如果不存在就报错，其实可以创建空文件夹或者<br><code>ln -s arm-linux-androideabi-4.9 mipsel-linux-android</code><br> 其实都一样占个位置而已防止检测不通过编译失败, 这种方式也不推荐,因为官方都放弃了,还用它干什么呢</p>
+</li>
+<li><p>这种方式也是最简单的方式,也是最合理的方式,推荐使用较新版本的gradle plugin, 直接升级到3.1.3以上重新编译即可<br>在<code>\android\build.gradle</code>下编辑</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dependencies &#123;</span><br><span class="line">        classpath &#x27;com.android.tools.build:gradle:3.1.3&#x27;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Ferris Chi
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://ferrischi.github.io/2020/02/20/flutter-debug-1/" title="flutter_debug_1">http://ferrischi.github.io/2020/02/20/flutter-debug-1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+        <div class="social-item">
+          <a target="_blank" class="social-link" href="/atom.xml">
+            <span class="icon">
+              <i class="fa fa-rss"></i>
+            </span>
+
+            <span class="label">RSS</span>
+          </a>
+        </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          
+          <div class="post-tags">
+              <a href="/tags/flutter/" rel="tag"><i class="fa fa-tag"></i> flutter</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/18/usage-of-override/" rel="prev" title="override 的用法">
+      <i class="fa fa-chevron-left"></i> override 的用法
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/14/201403-3/" rel="next" title="201403-3">
+      201403-3 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#flutter-%E5%8D%A1%E5%9C%A8Running-%E2%80%98gradle-assembleDebug%E6%88%96%E8%80%85Falied"><span class="nav-number">1.</span> <span class="nav-text">flutter 卡在Running ‘gradle assembleDebug或者Falied</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AndroidStudio-SSL-peer-shut-down-incorrectly-%E9%97%AE%E9%A2%98%E5%92%8Cplugin-Market%E6%8F%92%E4%BB%B6%E4%B8%8B%E8%BD%BD%E5%A4%B1%E8%B4%A5%E9%97%AE%E9%A2%98"><span class="nav-number">2.</span> <span class="nav-text">AndroidStudio SSL peer shut down incorrectly 问题和plugin Market插件下载失败问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Your-app-isn%E2%80%99t-using-AndroidX%E9%94%99%E8%AF%AF"><span class="nav-number">3.</span> <span class="nav-text">Your app isn’t using AndroidX错误</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#No-toolchains-found-in-the-NDK-toolchains-folder-for-ABI-with-prefix-mipsel-linux-android%E9%94%99%E8%AF%AF"><span class="nav-number">4.</span> <span class="nav-text">No toolchains found in the NDK toolchains folder for ABI with prefix: mipsel-linux-android错误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E8%83%8C%E6%99%AF"><span class="nav-number">4.1.</span> <span class="nav-text">相关背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NDK%E7%9B%AE%E5%BD%95%EF%BC%9AAndroid-Studio%E7%9A%84SDK-tools%E4%B8%AD%E5%8F%AF%E8%A7%81%E3%80%82"><span class="nav-number">4.2.</span> <span class="nav-text">NDK目录：Android Studio的SDK tools中可见。</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ferris Chi"
+      src="/images/myavatar.png">
+  <p class="site-author-name" itemprop="name">Ferris Chi</p>
+  <div class="site-description" itemprop="description">a simple site</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ferrischi" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ferrischi" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/erichchew201@butp.edu.cn" title="E-Mail → erichchew201@butp.edu.cn"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 2020.7 – 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ferris Chi</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">15k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">14 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script size="300" alpha="0.3" zIndex="-1" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
